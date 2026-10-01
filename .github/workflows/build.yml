@@ -17,14 +17,22 @@ jobs:
       - name: Extract project
         run: |
           unzip -q DailyCandle_TradingView_v1.1.zip
-          ls -la
-          ls -la DailyCandle
+          echo "Project extracted:"
+          find DailyCandle -maxdepth 2 -type f | head -50
 
-      - name: Set up Java
+      - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
+
+      - name: Fix Java and Kotlin JVM targets
+        run: |
+          find DailyCandle -type f \( -name "*.gradle" -o -name "*.gradle.kts" \) -print0 | while IFS= read -r -d '' file; do
+            sed -i 's/JavaVersion\.VERSION_1_8/JavaVersion.VERSION_17/g' "$file"
+            sed -i 's/jvmTarget *= *["'\'']1\.8["'\'']/jvmTarget = "17"/g' "$file"
+            sed -i 's/jvmTarget *= *["'\'']8["'\'']/jvmTarget = "17"/g' "$file"
+          done
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -33,7 +41,8 @@ jobs:
 
       - name: Build APK
         working-directory: DailyCandle
-        run: gradle assembleDebug --no-daemon
+        run: |
+          gradle assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
