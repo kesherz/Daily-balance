@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-03T20:21:19Z",
+  "title": "Design System: Daily Balance",
+  "extensions": {
+    "colorMeta": {
+      "light-primary": {
+        "role": "primary",
+        "displayName": "Deep teal · light"
+      },
+      "dark-primary": {
+        "role": "primary",
+        "displayName": "Pale teal · dark"
+      },
+      "light-secondary": {
+        "role": "secondary",
+        "displayName": "Muted green · light"
+      },
+      "dark-secondary": {
+        "role": "secondary",
+        "displayName": "Muted green · dark"
+      },
+      "light-surface": {
+        "role": "neutral",
+        "displayName": "Quiet light neutral"
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Deep green ink"
+      },
+      "light-increase": {
+        "displayName": "Increase · light"
+      },
+      "dark-increase": {
+        "displayName": "Increase · dark"
+      },
+      "light-decrease": {
+        "displayName": "Decrease · light"
+      },
+      "dark-decrease": {
+        "displayName": "Decrease · dark"
+      },
+      "light-unchanged": {
+        "role": "neutral",
+        "displayName": "Unchanged · light"
+      },
+      "dark-unchanged": {
+        "role": "neutral",
+        "displayName": "Unchanged · dark"
+      }
+    },
+    "typographyMeta": {
+      "display-small": {
+        "displayName": "Latest balance",
+        "purpose": "Full saved value with tabular numerals."
+      },
+      "headline-small": {
+        "displayName": "Empty-state headline",
+        "purpose": "Native semibold headline emphasis."
+      },
+      "title-large": {
+        "displayName": "Amount",
+        "purpose": "Full numeric values through AmountText."
+      },
+      "title-medium": {
+        "displayName": "Section and date",
+        "purpose": "Section headings, selected dates, and history values."
+      },
+      "body-large": {
+        "displayName": "Body large",
+        "purpose": "Native reading text with tabular numerals."
+      },
+      "body-medium": {
+        "displayName": "Body medium",
+        "purpose": "Reading text and percentages with tabular numerals."
+      },
+      "body-small": {
+        "displayName": "Supporting text",
+        "purpose": "Dates, hints, captions, and explanations."
+      },
+      "label-large": {
+        "displayName": "Direction and detail label",
+        "purpose": "Compact labels that explain the value."
+      },
+      "label-medium": {
+        "displayName": "Context label",
+        "purpose": "Small contextual labels such as latest change."
+      },
+      "label-small": {
+        "displayName": "Chart axis",
+        "purpose": "Measured numeric and date axis labels."
+      }
+    },
+    "motion": [
+      {
+        "name": "navigation-crossfade",
+        "value": "180ms tween",
+        "purpose": "Compose Crossfade between destinations."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "navigation-rail-min-window-width",
+        "value": "600dp"
+      },
+      {
+        "name": "inline-entry-min-form-width",
+        "value": "340dp"
+      },
+      {
+        "name": "selection-row-min-width",
+        "value": "320dp"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Save button",
+      "kind": "button",
+      "refersTo": "save-button",
+      "description": "Native Material filled Button; minimum height token, busy-state disablement, and a 56 dp minimum in the inline entry row."
+    },
+    {
+      "name": "Entry date",
+      "kind": "button",
+      "refersTo": "date-button",
+      "description": "Native OutlinedButton opens Material DatePicker; a draft uses Entry date while a saved value uses Recorded on."
+    },
+    {
+      "name": "Value field",
+      "kind": "input",
+      "description": "Native OutlinedTextField with decimal keyboard, LTR input, sign toggle, Done action, persistent label, and textual errors."
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Labeled native Material navigation bar below the rail width threshold, rail at or above it; three destinations."
+    },
+    {
+      "name": "Settings choice",
+      "kind": "custom",
+      "refersTo": "settings-choice",
+      "description": "Full-width selectable native radio row; the height token is a minimum."
+    },
+    {
+      "name": "Entry dock",
+      "kind": "custom",
+      "refersTo": "entry-dock-light",
+      "description": "Native low-tone Surface with the matching light or dark dock token; scrollable form limited to half the available root height."
+    },
+    {
+      "name": "Body-only chart",
+      "kind": "custom",
+      "refersTo": "chart",
+      "description": "Compose Canvas for real recorded Open/Close bodies, with selection cues, reset, viewport gestures, and textual details; no invented wicks or highs/lows."
+    },
+    {
+      "name": "Change details",
+      "kind": "custom",
+      "description": "Direction icon and label, full signed amount, and percentage or its unavailable explanation; resolved through the current change-color provider."
+    }
+  ],
+  "narrative": {
+    "overview": "Daily Balance is clean, modern, focused, and understated. The visual system puts saved values, dates, and changes ahead of decoration. Open sections and restrained dividers keep dense information readable without a stack of oversized cards.\n\nThis is a native Android system built with Jetpack Compose Material 3. Brand expression comes from its paired color schemes, a small set of typography overrides, and shared spacing and shapes. Geometry uses Android dp; text uses sp and follows system font scale. No custom font or separate visual metaphor is established.",
+    "keyCharacteristics": [
+      "Quiet neutral light surfaces and deep green dark surfaces.",
+      "Teal primary actions with native Material controls.",
+      "Full numeric values and textual evidence beside the chart.",
+      "English and Persian content with Android RTL behavior."
+    ],
+    "rules": [
+      {
+        "name": "The Redundant Change Rule",
+        "body": "Always present change with its direction label, icon, and signed value as well as its semantic color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Full Value Rule",
+        "body": "Keep stored amounts selectable, unwrapped, and horizontally scrollable when needed; do not shorten or truncate the value to fit a layout.",
+        "section": "typography"
+      },
+      {
+        "name": "The Native Depth Rule",
+        "body": "Use Material surface roles and component elevation instead of introducing arbitrary drop shadows or ornamental layers.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do resolve color through Material theme roles and the current change-color provider.",
+      "Do keep full values, dates, Open, Close, and change readable in text.",
+      "Do preserve native dp/sp sizing, safe-drawing and IME insets, font-scale adaptation, and RTL resources.",
+      "Do use the shared type roles, spacing, shapes, and native Material interaction states."
+    ],
+    "donts": [
+      "Don't add gradients, flashy effects, decorative imagery, or oversized card stacks.",
+      "Don't rely on color alone to explain direction or selection.",
+      "Don't invent high/low values, wicks, missing daily values, or market predictions.",
+      "Don't label an unsaved draft date as a recorded value."
+    ]
+  }
+}
