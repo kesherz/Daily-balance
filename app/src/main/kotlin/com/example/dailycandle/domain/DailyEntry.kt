@@ -65,9 +65,12 @@ data class Summary(
 fun summarize(entries: List<DailyEntry>): Summary? {
     val sorted = orderedEntries(entries)
     val latest = sorted.lastOrNull() ?: return null
-    fun recent(days: Long): Change? = sorted.lastOrNull {
-        !it.date.isAfter(latest.date.minusDays(days))
-    }?.let { Change.between(it.value, latest.value) }
+    fun recent(days: Long): Change? {
+        // Epoch-day arithmetic also handles a cutoff before LocalDate.MIN after CSV import.
+        val cutoff = latest.date.toEpochDay() - days
+        return sorted.lastOrNull { it.date.toEpochDay() <= cutoff }
+            ?.let { Change.between(it.value, latest.value) }
+    }
     return Summary(
         latest = latest,
         latestChange = sorted.getOrNull(sorted.lastIndex - 1)?.let {

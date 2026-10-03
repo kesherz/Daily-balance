@@ -8,6 +8,7 @@
   <string name="latest_change">Latest change</string>
   <string name="since_date">Since %1$s</string>
   <string name="recorded_on">Recorded on %1$s</string>
+  <string name="entry_date">Entry date: %1$s</string>
   <string name="chart_title">Recorded changes</string>
   <string name="axis_relative">Axis offset: %1$s. Labels show the difference from this value.</string>
   <string name="chart_help">Drag to pan · Pinch to zoom · Double tap to reset</string>

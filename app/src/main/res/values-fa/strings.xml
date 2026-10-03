@@ -9,6 +9,7 @@
   <string name="latest_change">آخرین تغییر</string>
   <string name="since_date">از %1$s</string>
   <string name="recorded_on">ثبت‌شده در %1$s</string>
+  <string name="entry_date">تاریخ ثبت: %1$s</string>
   <string name="chart_title">تغییرات ثبت‌شده</string>
   <string name="axis_relative">مبنای محور: %1$s. برچسب‌ها اختلاف با این مقدار را نشان می‌دهند.</string>
   <string name="chart_help">کشیدن: جابه‌جایی · دو انگشت: بزرگ‌نمایی · دو ضربه: بازنشانی</string>

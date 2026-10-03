@@ -71,7 +71,7 @@ fun EntryForm(
             modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("entry_date"),
         ) {
             AppIcon(R.drawable.ic_calendar)
-            Text(stringResource(R.string.recorded_on, DisplayFormat.date(draft.date, locale)), Modifier.padding(start = Space.small))
+            Text(stringResource(R.string.entry_date, DisplayFormat.date(draft.date, locale)), Modifier.padding(start = Space.small))
         }
         if (draft.expectedUpdate != null) {
             Text(stringResource(R.string.existing_entry, DisplayFormat.date(draft.date, locale)), style = androidx.compose.material3.MaterialTheme.typography.bodySmall)

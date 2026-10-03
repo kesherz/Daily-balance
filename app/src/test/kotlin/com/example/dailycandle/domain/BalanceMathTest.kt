@@ -76,6 +76,17 @@ class BalanceMathTest {
         }
     }
 
+    @Test fun `valid imported calendar extremes cannot break recent summaries`() {
+        val minimum = DailyEntry(LocalDate.MIN, BigDecimal.TEN)
+        val first = summarize(listOf(minimum))!!
+        assertNull(first.sevenDayChange)
+        assertNull(first.thirtyDayChange)
+        val next = summarize(listOf(minimum, minimum.copy(date = LocalDate.MIN.plusDays(7), value = BigDecimal("12"))))!!
+        assertEquals(BigDecimal("2"), next.sevenDayChange!!.absolute)
+        assertNull(next.thirtyDayChange)
+        assertNull(summarize(listOf(minimum.copy(date = LocalDate.MAX)))!!.sevenDayChange)
+    }
+
     @Test fun `viewport bounds zoom pan and reset with long histories`() {
         val initial = ChartViewport.latest(100_000)
         assertEquals(99_976.0, initial.start, 0.0)
