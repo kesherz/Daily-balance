@@ -16,7 +16,7 @@ jobs:
 
       - name: Extract project
         run: |
-          unzip -q DailyCandle_TradingView_v1.5.zip
+          unzip -q DailyCandle_TradingView_v1.5_fixed.zip
           echo "Project extracted:"
           find DailyCandle -maxdepth 2 -type f | head -50
 
